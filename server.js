@@ -23,9 +23,22 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 // New
-app.get('/books', (req, res) => {
+app.get('/logs/new', (req, res) => {
     res.render('new.ejs')
 })
+
+//Create
+app.post('/logs', (req, res) => {
+    if (req.body.shipIsBroken === 'on') {
+		//if checked, req.body.shipIsBroken is set to 'on'
+		req.body.shipIsBroken = true;
+	} else {
+		//if not checked, req.body.shipIsBroken is undefined
+		req.body.shipIsBroken = false;
+	}
+
+    res.send(req.body)
+});
 
 // Listener
 const PORT = process.env.PORT;
