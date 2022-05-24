@@ -4,6 +4,7 @@ const app = express();
 require('dotenv').config();
 const { default: mongoose } = require("mongoose");
 const Log = require('./models/logs');
+const methodOverride = require("method-override");
 
 // Database Connection
 mongoose.connect(process.env.DATABASE_URL, {
@@ -21,6 +22,7 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 // Middleware
 // Body parser middleware: give us access to req.body
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 
 // Routes
 // New
@@ -59,6 +61,12 @@ app.get('/logs/:id', (req, res) => {
 			log: foundLog,
 		});
 	});
+});
+
+//Delete
+app.delete('/logs/_id', (req, res) => {
+    Log.splice(req.params.id, 1)
+    res.redirect('/logs')
 });
 
 // Listener
