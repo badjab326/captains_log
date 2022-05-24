@@ -28,7 +28,7 @@ app.get('/logs/new', (req, res) => {
     res.render('new.ejs')
 })
 
-//Create
+// Create
 app.post('/logs', (req, res) => {
     if (req.body.shipIsBroken === 'on') {
 		//if checked, req.body.shipIsBroken is set to 'on'
@@ -42,6 +42,16 @@ app.post('/logs', (req, res) => {
         res.redirect('/logs')
     })
 });
+
+// Index
+app.get('/logs', (req, res) => {
+	Log.find({}, (error, allLogs) => {
+		res.render('index.ejs', {
+			logs: allLogs,
+		});
+	});
+});
+
 
 // Listener
 const PORT = process.env.PORT;

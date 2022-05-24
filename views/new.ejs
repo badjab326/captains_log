@@ -9,9 +9,9 @@
 	<body>
 		<h1>New Log Page</h1>
 		<form action="/logs" method="POST">
-			Title: <input type="text" name="title" /><br />
-            <textarea id="entry" placeholder="What happened?"></textarea>
-			Ship Broken: <input type="checkbox" name="shipIsBroken" /><br />
+			Title: <input type="text" name="title" id="title" /><br />
+            <textarea name="entry" id="entry" placeholder="What happened?"></textarea><br />
+			Ship Broken: <input type="checkbox" name="shipIsBroken" id="shipIsBroken"/><br />
 			<input type="submit" name="submit" value="ADD TO LOG" />
 		</form>
 	</body>

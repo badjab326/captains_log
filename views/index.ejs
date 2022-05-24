@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Captains Logs</title>
+	</head>
+	<body>
+        <nav>
+            <a href="/logs/new">Add a New Log!</a>
+        </nav>
+		<h1>Captains Logs</h1>
+		<ul>
+			<% logs.forEach(log => { %>
+			<li>
+                <a href="/logs/<%=log._id; %>"> <%=log.title; %> </a>
+            </li>
+			<% }) %>
+		</ul>
+	</body>
+</html>
