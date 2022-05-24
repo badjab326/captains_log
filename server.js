@@ -52,6 +52,14 @@ app.get('/logs', (req, res) => {
 	});
 });
 
+// Show
+app.get('/logs/:id', (req, res) => {
+	Log.findById(req.params.id, (err, foundLog) => {
+		res.render('show.ejs', {
+			log: foundLog,
+		});
+	});
+});
 
 // Listener
 const PORT = process.env.PORT;
