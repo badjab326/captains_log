@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 const { default: mongoose } = require("mongoose");
+const Log = require('./models/logs');
 
 // Database Connection
 mongoose.connect(process.env.DATABASE_URL, {
@@ -37,7 +38,9 @@ app.post('/logs', (req, res) => {
 		req.body.shipIsBroken = false;
 	}
 
-    res.send(req.body)
+    Log.create(req.body, (error, createdLog) => {
+        res.redirect('/logs')
+    })
 });
 
 // Listener
