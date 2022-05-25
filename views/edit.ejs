@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Captains Log</title>
+	</head>
+	<body>
+		<h1>Edit Log Page</h1>
+		<form action="/logs/<%=log._id%>?_method=PUT" method="POST">
+			Title: <input type="text" name="title" id="title" value="<%= log.title %>"/><br />
+            <textarea name="entry" id="entry" placeholder="What happened?"><%= log.entry %></textarea><br />
+			Ship Broken: <input type="checkbox" name="shipIsBroken" id="shipIsBroken" <% if(log.shipIsBroken
+            === true){ %> checked <% } %> /><br />
+			<input type="submit" name="submit" value="ADD TO LOG" />
+		</form>
+	</body>
+</html>

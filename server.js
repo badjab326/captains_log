@@ -64,10 +64,40 @@ app.get('/logs/:id', (req, res) => {
 });
 
 //Delete
-app.delete('/logs/_id', (req, res) => {
-    Log.splice(req.params.id, 1)
-    res.redirect('/logs')
-});
+app.delete("/logs/:id", (req, res) => {
+    Log.findByIdAndDelete(req.params.id, (err, data) => {
+      res.redirect("/logs")
+    })
+  });
+
+// Edit
+app.get("/logs/:id/edit", (req, res) => {
+    Log.findById(req.params.id, (error, foundLog) => {
+      res.render("edit.ejs", {
+        log: foundLog,
+      })
+    })
+  });
+
+  // Update
+app.put("/logs/:id", (req, res) => {
+    if (req.body.shipIsBroken === "on") {
+      req.body.shipIsBroken = true
+    } else {
+      req.body.shipIsBroken = false
+    }
+  
+    Log.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+      },
+      (error, updatedLog) => {
+        res.redirect(`/logs/${req.params.id}`)
+      }
+    )
+  });
 
 // Listener
 const PORT = process.env.PORT;

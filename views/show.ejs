@@ -13,8 +13,10 @@
 		<h1><%=log.title %></h1>
 		Log Entry: <%=log.entry %>
 		<br />
-		Ship Broken?: <%=log.shipIsBroken %>
+		Ship Broken: <%=log.shipIsBroken %>
         <br />
         <%=log.timestamps %>
+
+        <a href="/logs/<%=log._id %>/edit">Edit</a>
 	</body>
 </html>
